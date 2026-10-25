@@ -1,0 +1,41 @@
+PHASE 4 — BUILD AND RUN (Windows 11 + MSYS2 UCRT64)
+
+PREREQUISITES
+- MSYS2 UCRT64 compiler (g++), CMake, Ninja
+- SQLite development package (sqlite3.h + libsqlite3)
+- Argon2 development package (argon2.h + libargon2)
+- Windows bcrypt/CNG library (provided by Windows SDK)
+
+The CMake file searches C:\msys64\ucrt64\include and C:\msys64\ucrt64\lib. Keep the dependencies in that environment.
+
+BUILD
+1. Open PowerShell in the folder containing CMakeLists.txt and HighSchool_LMS_SQLite_Schema.sql.
+2. Run:
+   cmake -S . -B build -G Ninja
+   cmake --build build
+3. If CMake reports a stale generator/cache, close the running app and remove the build folder, then rerun both commands.
+4. Run the program from the project root (not from inside build):
+   .\build\HighschoolLMS.exe
+
+WHY RUN FROM THE PROJECT ROOT?
+The program loads HighSchool_LMS_SQLite_Schema.sql and opens lms.db using relative paths. Starting it from the project root ensures both refer to the intended files.
+
+LOGIN / DEMO CREDENTIALS
+admin01 / Admin@12345
+lecturer01 / Teach@12345
+hod01 / Moderate@12345
+student01 / Student@12345
+These are for classroom demonstration only. The app hashes passwords using Argon2id. Do not use these credentials in a real deployment.
+
+IF LOGIN FAILS
+- Check that the username is spelled exactly as above.
+- Confirm you are running the executable from the project root.
+- If this database is a modified copy, inspect its Users table and role values with sqlite3.
+- Do not delete lms.db without backing it up; it contains persistent project data.
+
+VERIFY BUILD
+A successful build ends with a message similar to:
+[.../... ] Linking CXX executable HighschoolLMS.exe
+
+VERIFY SQLITE CONNECTION
+Run the app; the first output should say that SQLite is connected and show the login menu.

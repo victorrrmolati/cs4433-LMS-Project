@@ -1,0 +1,14 @@
+CODING STANDARD (C++17)
+
+1. Use C++17 and standard library types; do not use compiler extensions.
+2. Use PascalCase for class names (UserRepository), camelCase for methods/variables (createUser), and UPPER_SNAKE_CASE for constants.
+3. Keep declarations in include/*.h and implementation in src/*.cpp.
+4. Use RAII for database connections and finalize every SQLite statement with sqlite3_finalize.
+5. Use parameterized SQL (sqlite3_prepare_v2 + sqlite3_bind_*) for values originating from users. Never concatenate user input into SQL.
+6. Validate required strings, numeric ranges, identifiers, role choices, dates and score limits before committing data.
+7. Throw standard exceptions for invalid input/database failures and catch them at the menu boundary; display a useful message rather than terminate.
+8. Use virtual destructors and override on polymorphic methods. Keep permissions associated with the role class.
+9. Passwords must be Argon2id salted hashes; never log or persist the submitted plain-text password.
+10. Group multi-step mark updates and audit insertion in a SQLite transaction so the mark and its audit record succeed or roll back together.
+11. Use descriptive names, short comments to explain non-obvious rules, and keep user interface code separate from data access code.
+12. Build with CMake; do not commit generated build files or executable binaries as the source of truth.

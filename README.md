@@ -67,8 +67,10 @@ The second query should show an encoded Argon2id hash (starts with `$argon2id$`)
 - Late penalties are calculated at marking time: subtract 10% of the maximum mark for each late calendar day up to three days; after three days the score is zero. Approved individual extensions replace the normal deadline for status/penalty calculation.
 - The current implementation permits one resubmission and checks that the second attempt is on/before the effective deadline. Students must be enrolled in the assignment course; lecturers must be assigned to the course before creating an assignment.
 - Student mark display is filtered to released marks only.
-- This is a compact Phase 4 console implementation. Authentication is password-hash based; however, role enforcement is currently menu-level rather than a separately authenticated service/API boundary. Review this design limitation in a production hardening pass.
+- This is a compact Phase 4 console implementation. Authentication is password-hash based; however, role enforcement is currently menu-level rather than a separately authenticated service/API boundary. 
 
 
 ## Demo administrator display name
-The seeded administrator's display name is **Tlholo Victor** (username `admin01`). The demonstration username/password remain `admin01` / `Admin@12345`. Existing databases are not overwritten by seed logic; if `admin01` already exists, use the one-time SQL update described in `CRUD_AND_DEMO_GUIDE.txt`.
+The seeded administrator's display name is **Tlholo Victor** (username `admin01`). The demonstration username/password remain `admin01` / `Admin@12345`. 
+
+
